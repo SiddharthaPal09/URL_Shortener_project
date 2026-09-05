@@ -1,6 +1,6 @@
 package com.sid.urlshortener.service;
 
-import com.sid.urlshortener.model.ShortUrl;
+import com.sid.urlshortener.entity.ShortUrl;
 import com.sid.urlshortener.repository.ShortUrlRepository;
 import org.springframework.stereotype.Service;
 
@@ -9,8 +9,8 @@ import java.util.Optional;
 
 @Service
 public class ShortUrlService {
-    private final ShortUrlRepository shortUrlRepository; // final as in CI the repo is provided once
-                                                       // when serice is created and never changes
+    private final ShortUrlRepository shortUrlRepository; // final as in CI,the repo is provided once
+                                                       // when service is created once and never changes
 
     public ShortUrlService(ShortUrlRepository shortUrlRepository) {
         this.shortUrlRepository= shortUrlRepository;
@@ -27,17 +27,17 @@ public class ShortUrlService {
     }
 
     //GET URL BY ID
-    public Optional<ShortUrl> getShortUrlById(Integer id){
+    public Optional<ShortUrl> getShortUrlById(Long id){
         return shortUrlRepository.findById(id);
     }
 
-    //UPDATE URL
-    public ShortUrl updateShortUrl(ShortUrl shortUrl){
+    //UPDATE URL BY ID
+    public ShortUrl updateShortUrlById(Long id,ShortUrl shortUrl){
         return shortUrlRepository.save(shortUrl);
     }
 
     //DELETE BY ID
-    public void deleteShortUrlById(int id){
+    public void deleteShortUrlById(Long id){
         shortUrlRepository.deleteById(id);
     }
 

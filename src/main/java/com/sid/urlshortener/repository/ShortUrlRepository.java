@@ -1,9 +1,14 @@
 package com.sid.urlshortener.repository;
 
-import com.sid.urlshortener.model.ShortUrl;
+import com.sid.urlshortener.entity.ShortUrl;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ShortUrlRepository extends JpaRepository<ShortUrl,Integer> { // we use Integer as it is Wrapper class of primitive datatype int
+import java.util.Optional;
+
+public interface ShortUrlRepository extends JpaRepository<ShortUrl,Long> { // we use Integer as it is Wrapper class of primitive datatype int
+
+
+    Optional<ShortUrl> findByid(Long id);
 }
 /*
 spring data jpa automatically creates concepts like
