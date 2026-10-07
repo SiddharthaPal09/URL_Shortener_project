@@ -1,23 +1,50 @@
 package com.sid.urlshortener.entity;
 
-import com.sid.urlshortener.enums.Role;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Table;
-import lombok.Data;
+import ch.qos.logback.core.util.Loader;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "_user")
 public class User {
 
-    private String firstname;
-    private String lastname;
+    @Id
+    @GeneratedValue(strategy =GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
     private String email;
+
+    @Column(nullable = false)
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    @Column(nullable = false)
+    private String role;
+
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
+
+    @Column(nullable = false)
+    private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "user")
+    private List<Url> urls=new ArrayList<>();
+
+    @PrePersist
+    void onCreate(){
+        createdAt=LocalDateTime.now();
+        updatedAt= LocalDateTime.now();
+    }
+
 
 }
