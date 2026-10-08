@@ -1,4 +1,4 @@
-package com.sid.urlshortener.payload.request;
+package com.sid.urlshortener.dto.request;
 import lombok.*;
 
 @Builder

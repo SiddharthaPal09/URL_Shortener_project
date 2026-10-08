@@ -1,6 +1,6 @@
 package com.sid.urlshortener.service;
 
-import com.sid.urlshortener.payload.request.AuthenticationRequest;
+import com.sid.urlshortener.dto.request.AuthenticationRequest;
 import org.apache.tomcat.util.http.parser.Authorization;
 
 public interface AuthenticationService {

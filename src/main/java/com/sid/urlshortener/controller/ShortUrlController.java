@@ -1,6 +1,6 @@
 package com.sid.urlshortener.controller;
 
-import com.sid.urlshortener.entity.ShortUrl;
+import com.sid.urlshortener.entity.Url;
 import com.sid.urlshortener.service.ShortUrlService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,22 +17,22 @@ public class ShortUrlController {
     }
 
     @GetMapping
-    public List<ShortUrl> getAllShortUrls(){
+    public List<Url> getAllShortUrls(){
         return shortUrlService.getAllShortUrls();
     }
 
     @PostMapping
-    public ShortUrl createShortUrl(@RequestBody ShortUrl shortUrl){
+    public Url createShortUrl(@RequestBody Url shortUrl){
         return shortUrlService.createShortUrl(shortUrl);
     }
 
     @GetMapping("/{id}")
-    public Optional<ShortUrl> getShortUrlById(@PathVariable Long id){
+    public Optional<Url> getShortUrlById(@PathVariable Long id){
         return shortUrlService.getShortUrlById(id);
     }
 
     @PutMapping("/{id}")
-    public ShortUrl updateShortUrl(@PathVariable Long id,@RequestBody ShortUrl shortUrl){
+    public Url updateShortUrl(@PathVariable Long id, @RequestBody Url shortUrl){
         return shortUrlService.updateShortUrlById(id , shortUrl);
     }
 
